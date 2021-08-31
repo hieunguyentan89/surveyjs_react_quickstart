@@ -52,7 +52,7 @@ export default function SurveyJSReactApplication() {
 
         <Switch>
           <Route exact path="/">
-            <HomePage />
+            <CreatorPage />
           </Route>
           <Route path="/survey">
             <SurveyPage />
