@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as SurveyKo from "survey-knockout";
 import * as SurveyJSCreator from "survey-creator";
 import * as Survey from "survey-react";
+// import "survey-react/survey.css";
 import "survey-creator/survey-creator.css";
 import "./custom.css";
 import "jquery-ui/themes/base/all.css";
@@ -16,7 +17,7 @@ import $ from "jquery";
 import "jquery-ui/ui/widgets/datepicker.js";
 import "select2/dist/js/select2.js";
 import "jquery-bar-rating";
-
+import { v4 as uuidv4 } from 'uuid';
 //import "icheck/skins/square/blue.css";
 import "pretty-checkbox/dist/pretty-checkbox.css";
 
@@ -25,9 +26,9 @@ SurveyJSCreator.StylesManager.applyTheme("bootstrapmaterial");
 
 var widget = {
   //the widget name. It should be unique and written in lowcase.
-  name: "textwithbutton",
+  name: "header",
   //the widget title. It is how it will appear on the toolbox of the SurveyJS Editor/Builder
-  title: "Text with button",
+  title: "Text with header",
   //the name of the icon on the toolbox. We will leave it empty to use the standard one
   iconName: "",
   //If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded
@@ -39,7 +40,7 @@ var widget = {
   isFit: function (question) {
     console.log(question);
       //we return true if the type of question is textwithbutton
-      return question.getType() === 'textwithbutton';
+      return question.getType() === 'header';
       //the following code will activate the widget for a text question with inputType equals to date
       //return question.getType() === 'text' && question.inputType === "date";
   },
@@ -51,30 +52,54 @@ var widget = {
   activatedByChanged: function (activatedBy) {
       //we do not need to check acticatedBy parameter, since we will use our widget for customType only
       //We are creating a new class and derived it from text question type. It means that text model (properties and fuctions) will be available to us
-      SurveyKo.JsonObject.metaData.addClass("textwithbutton", [], null, "text");
+      SurveyKo.JsonObject.metaData.addClass("header", [], null, "empty");
       //signaturepad is derived from "empty" class - basic question class
       //Survey.JsonObject.metaData.addClass("signaturepad", [], null, "empty");
 
       //Add new property(s)
       //For more information go to https://surveyjs.io/Examples/Builder/?id=addproperties#content-docs
-      SurveyKo.JsonObject.metaData.addProperties("textwithbutton", [
-          { name: "buttonText", default: "Click Me" },
-          { name: "placeHolder", default: "Input Pass" },
-          { name: "inputType", default: "text" }
+      SurveyKo.JsonObject.metaData.addProperties("header", [
+          { name: "internal header name", category: "general" , visibleIndex: 0},
+          { name: "header", category: "general", visibleIndex: 1 },
+          { name: "header description", category: "general", visibleIndex: 2},
       ]);
+
   },
   //If you want to use the default question rendering then set this property to true. We do not need any default rendering, we will use our our htmlTemplate
-  isDefaultRender: true,
+  isDefaultRender: false,
   //You should use it if your set the isDefaultRender to false
-  htmlTemplate: "<input/>",
+  htmlTemplate: "<div><input/><input/><input/></div>",
   //The main function, rendering and two-way binding
   afterRender: function (question, el) {
       //el is our root element in htmlTemplate, is "div" in our case
       //get the text element
-      console.log(el);
-      console.log(question);
-      
+      var text = el.getElementsByTagName("input")[0];
+      var text1 = el.getElementsByTagName("input")[1];
+      var text2 = el.getElementsByTagName("input")[2];
+      console.log(text);
+      console.log(text1);
+      console.log(text2);
 
+      question.registerFunctionOnPropertyValueChanged(
+        "header",
+        function () {
+          text.value = question.header;
+        }
+      );
+
+      question.registerFunctionOnPropertyValueChanged(
+        "internal header name",
+        function () {
+          text1.value = question['internal header name'];
+        }
+      );
+
+      question.registerFunctionOnPropertyValueChanged(
+        "header description",
+        function () {
+          text2.value = question["header description"];
+        }
+      );
   },
   //Use it to destroy the widget. It is typically needed by jQuery widgets
   willUnmount: function (question, el) {
@@ -135,9 +160,18 @@ var searchStringWidget = {
     );
   },
 };
-
+const assss = "{\n \"pages\": [\n  {\n   \"name\": \"page1\",\n   \"elements\": [\n    {\n     \"type\": \"text\",\n     \"name\": \"question1\",\n     \"validators\": [\n      {\n       \"type\": \"email\"\n      }\n     ],\n     \"internal id\": \"f86e63e9-7565-4ddb-a76c-8c6df5f65a40\",\n     \"inputType\": \"email\",\n     \"placeHolder\": \"Input Email\"\n    }\n   ]\n  }\n ]\n}";
 // SurveyKo.CustomWidgetCollection.Instance.addCustomWidget(searchStringWidget);
-// SurveyKo.CustomWidgetCollection.Instance.addCustomWidget(widget, "customtype");
+SurveyKo.CustomWidgetCollection.Instance.addCustomWidget(widget, "customtype");
+    // SurveyJSCreator
+    // .SurveyQuestionEditorDefinition
+    // .definition["header"]
+    // .properties = [
+    //     "internal header name",
+    //     "header",
+    //     "header description",
+    //     "visible"
+    // ];
 class SurveyCreator extends Component {
   surveyCreator;
   componentDidMount() {
@@ -220,15 +254,29 @@ class SurveyCreator extends Component {
       iconName: "header-text",
       title: "Header",
       json: {
-          "type": "expression",
-          "name": "q2"
+          "type": "header",
+          "titleLocation": "hidden",
       }
     });
     SurveyKo
     .Serializer
-    .addProperty("expression", {
-        name: "internal header name",
-        category: "general"
+    .addProperty("question", {
+        name: "internal id",
+        default: uuidv4()
+    });
+
+    // SurveyKo
+    // .Serializer
+    // .addProperty("survey", {
+    //     name: "survey id",
+    //     default: uuidv4()
+    // });
+
+    SurveyKo
+    .Serializer
+    .addProperty("pages", {
+        name: "internal id",
+        // default: uuidv4()
     });
 
     SurveyKo
@@ -245,24 +293,13 @@ class SurveyCreator extends Component {
         category: "general"
     });
    
-    SurveyJSCreator
-    .SurveyQuestionEditorDefinition
-    .definition["expression"]
-    .properties = [
-        "internal header name",
-        "header",
-        "header description",
-        "title",
-        "name",
-        "description",
-        "visible"
-    ];
+
 
     this.surveyCreator
     .onPropertyValueChanging
     .add(function (sender, options) {
-      console.log(sender);
-      console.log(options);
+      // console.log(sender);
+      // console.log(options);
       // if (options.property.name === 'header'){
 
       // } else if (options.property.name === 'internal header name'){
@@ -287,6 +324,24 @@ class SurveyCreator extends Component {
         
     });
 
+    var myWhitePropertiesList = ["header", "header description", "internal header name", "visible"]; //the list of properties you want to show
+    this.surveyCreator
+    .onShowingProperty
+    .add(function (sender, options) {
+        if (options.obj.getType() == "header") {
+          options.canShow = myWhitePropertiesList.indexOf(options.property.name) > -1; 
+        }
+    });
+
+    this.surveyCreator
+    .onQuestionAdded
+    .add(function (sender, options) {
+      console.log(options);
+        if (options.question["internal id"]) {
+          options.question["internal id"] = uuidv4();
+        }
+    });
+
     this.surveyCreator.saveSurveyFunc = this.saveMySurvey;
     this.surveyCreator.tabs().push({
       name: "survey-templates",
@@ -298,7 +353,7 @@ class SurveyCreator extends Component {
       data: {},
     });
     this.surveyCreator.render("surveyCreatorContainer");
-
+    this.surveyCreator.text = assss;
 
   }
   render() {

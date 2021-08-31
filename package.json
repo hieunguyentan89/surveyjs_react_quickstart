@@ -5,6 +5,8 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "jquery": "^3.3.1",
+    "jspdf": "1.5.3",
+    "jspdf-autotable": "3.0.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^5.2.0",
@@ -14,9 +16,8 @@
     "survey-pdf": "latest",
     "survey-react": "latest",
     "surveyjs-widgets": "latest",
-    "xlsx": "^0.16.9",
-    "jspdf": "1.5.3",
-    "jspdf-autotable": "3.0.5"
+    "uuid": "^8.3.2",
+    "xlsx": "^0.16.9"
   },
   "scripts": {
     "start": "react-scripts start",
