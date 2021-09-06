@@ -52,7 +52,7 @@ var widget = {
   activatedByChanged: function (activatedBy) {
       //we do not need to check acticatedBy parameter, since we will use our widget for customType only
       //We are creating a new class and derived it from text question type. It means that text model (properties and fuctions) will be available to us
-      SurveyKo.JsonObject.metaData.addClass("header", [], null, "empty");
+      SurveyKo.JsonObject.metaData.addClass("header", [], null, "expression");
       //signaturepad is derived from "empty" class - basic question class
       //Survey.JsonObject.metaData.addClass("signaturepad", [], null, "empty");
 
@@ -66,7 +66,7 @@ var widget = {
 
   },
   //If you want to use the default question rendering then set this property to true. We do not need any default rendering, we will use our our htmlTemplate
-  isDefaultRender: false,
+  isDefaultRender: true,
   //You should use it if your set the isDefaultRender to false
   htmlTemplate: "<div><input/><input/><input/></div>",
   //The main function, rendering and two-way binding
@@ -251,11 +251,10 @@ class SurveyCreator extends Component {
     this.surveyCreator.toolbox.addItem({
       name: "header",
       isCopied: true,
-      iconName: "header-text",
+      iconName: "header",
       title: "Header",
       json: {
           "type": "header",
-          "titleLocation": "hidden",
       }
     });
     SurveyKo
@@ -341,7 +340,32 @@ class SurveyCreator extends Component {
           options.question["internal id"] = uuidv4();
         }
     });
+    this.surveyCreator.onElementAllowOperations.add(function (sender, options) {
+      var obj = options.obj;
+      if (!obj || !obj.page) return;
+      //if it is panel
+      console.log(options);
+      options.allowAddToToolbox = true;
+      options.allowChangeRequired= false;
+      options.allowChangeType= false;
+      options.allowCopy= true;
+      options.allowDelete= true;
+      options.allowDragging= true;
+      options.allowEdit= true;
+      options.allowShowEditor= true;
 
+      //Show/hide "Edit" button for showing modal Question/Panel Editor Window
+      //options.allowEdit = false;
+      
+      //Enable/disable element drag&drop
+      //options.allowDragging = false;
+      
+      //Enable/disable element changing isRequired property
+      //options.allowChangeRequired = false
+  
+      //Enable/disable element changing titleLocation property to hidden/default
+      //options.allowShowHideTitle = false
+  });
     this.surveyCreator.saveSurveyFunc = this.saveMySurvey;
     this.surveyCreator.tabs().push({
       name: "survey-templates",
@@ -358,6 +382,14 @@ class SurveyCreator extends Component {
   }
   render() {
     return (<div>
+      <div>
+      
+        <i data-fa-symbol="icon-actioncopy" className="fas fa-clone fa-fw"></i>
+        <i data-fa-symbol="icon-actiondragelement" className="fas fa-arrows-alt fa-fw"></i>
+        <i data-fa-symbol="icon-actiondelete" className="fas fa-trash fa-fw"></i>
+        <i data-fa-symbol="edit" className="fas fa-pencil fa-fw"></i>
+        <i data-fa-symbol="header" className="fas fa-heading fa-fw"></i>
+      </div>
       <script type="text/html" id="custom-tab-survey-templates">
         {`<div id="test">TEST</div>`}
       </script>
