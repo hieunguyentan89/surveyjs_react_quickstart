@@ -1,13 +1,20 @@
 import React, { Component } from "react";
+// import * as Survey from "survey-core";
+import * as SurveyReact from "survey-react-ui";
 import * as SurveyCreator from "survey-creator-react";
 import { HeaderToolbox } from "./HeaderToolbox";
+import CustomCreator from "./CustomDesigner";
 import "survey-knockout/modern.css";
 import "survey-creator-react/survey-creator-react.css";
+import "./custom.css";
+
 
 class SurveyReactV2 extends Component {
   render() {
     HeaderToolbox();
     var creator = new SurveyCreator.SurveyCreator({}, {});
+    //Make toolbox active by default
+    creator.rightContainerActiveItem("toolbox");
     creator.toolbox.clearItems();
     creator.toolbox.addItem({
         name: "header",
@@ -81,7 +88,9 @@ class SurveyReactV2 extends Component {
         <i data-fa-symbol="icon-number" className="fas fa-hashtag fa-fw"></i>
         <i data-fa-symbol="icon-email" className="fas fa-envelope-open-text fa-fw"></i>
 
-        <SurveyCreator.SurveyCreatorComponent creator={creator} />;
+        {/* <SurveyCreator.SurveyCreatorComponent creator={creator} />; */}
+        <SurveyReact.SurveyActionBar model={creator.toolbar}/>
+        <CustomCreator creator={creator} />
       </div>
     )
     
