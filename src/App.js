@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
+import SurveyReactV2 from "./SurveyReactV2";
 import { HomePage } from "./Home";
 import { CreatorPage } from "./Creator";
 import { SurveyPage } from "./Survey";
@@ -52,7 +53,7 @@ export default function SurveyJSReactApplication() {
 
         <Switch>
           <Route exact path="/">
-            <CreatorPage />
+            <SurveyReactV2 />
           </Route>
           <Route path="/survey">
             <SurveyPage />

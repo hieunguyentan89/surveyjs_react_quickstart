@@ -19,6 +19,8 @@
     "survey-analytics": "latest",
     "survey-creator": "latest",
     "survey-pdf": "latest",
+    "survey-creator-react": "^1.8.64-beta.1",
+    "survey-knockout": "^1.8.64",
     "survey-react": "latest",
     "surveyjs-widgets": "latest",
     "uuid": "^8.3.2",
