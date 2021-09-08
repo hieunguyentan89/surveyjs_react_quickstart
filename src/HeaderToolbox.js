@@ -22,7 +22,7 @@ export function HeaderToolbox() {
             init() {
               //Register a new type using the empty question as the base.
               // Survey.Serializer.addClass("header", [], null, "expression");
-              Survey.JsonObject.metaData.addClass("header", [], null, "expression");
+              Survey.Serializer.addClass("header", [], null, "checkbox");
               Survey.JsonObject.metaData.addProperties("header", [
                 { name: "internal header name", category: "general" , visibleIndex: 0},
                 { name: "header", category: "general", visibleIndex: 1 },

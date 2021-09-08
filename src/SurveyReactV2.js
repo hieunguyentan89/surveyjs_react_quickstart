@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-// import * as Survey from "survey-core";
+import * as Survey from "survey-core";
 import * as SurveyReact from "survey-react-ui";
 import * as SurveyCreator from "survey-creator-react";
 import { HeaderToolbox } from "./HeaderToolbox";
 import CustomCreator from "./CustomDesigner";
+import CustomToolboxWrapper from "./CustomToolboxWrapper";
 import "survey-knockout/modern.css";
 import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
@@ -12,7 +13,100 @@ import "./custom.css";
 class SurveyReactV2 extends Component {
   render() {
     HeaderToolbox();
+    // SurveyReact.ReactElementFactory.Instance.registerElement(
+    //   "svc-question",
+    //   (props) => {
+    //       return React.createElement(CustomQuestionAdorner, props);
+    //   }
+    // );
+      
+  // SurveyReact.ReactElementFactory.Instance.registerElement(
+  //   "svc-toolbox",
+  //   (props) => {
+  //     return React.createElement(CustomToolboxWrapper, props);
+  //   }
+  // );
     var creator = new SurveyCreator.SurveyCreator({}, {});
+    // creator.toolbarItems.push(
+    //   new Survey.Action({
+    //     id: "toolboxCustomization",
+    //     visible: true,
+    //     title: "Toolbox Customization",
+    //     enabled: true,
+    //     action: function () {
+    //       alert("Hi!");
+    //     }
+    //   })
+    // );
+
+    creator.onDefineElementMenuItems.add((sender, options) => {
+      // If an element doesn't have such a property, the element is not a question.
+      if (options.obj.startWithNewLine === undefined) return;
+      var question = options.obj;
+      // Define a new bar item (action).
+      var action1 = {
+          id: "action1", // Unique id
+          css: () => "sv-action-bar-item--action1",
+          title: "", // Item text
+          // An icon to render depending on a property's value:
+          iconName: "icon-action1",
+          // An action to perform on a click:
+          action: () => {
+              alert('action1');
+          }
+      };
+
+      var action2 = {
+        id: "action2", // Unique id
+        css: () => "sv-action-bar-item--action2",
+        title: "", // Item text
+        // An icon to render depending on a property's value:
+        iconName: "icon-action2",
+        // An action to perform on a click:
+        action: () => {
+            alert('action2');
+        }
+      };
+
+      var action3 = {
+        id: "action3", // Unique id
+        css: () => "sv-action-bar-item--action3",
+        title: "", // Item text
+        // An icon to render depending on a property's value:
+        iconName: "icon-action3",
+        // An action to perform on a click:
+        action: () => {
+            alert('action3');
+        }
+      };
+      // Find the "delete" action's position.
+      var actionDelete;
+      var actionCopy;
+      var index = -1;
+      for (var i = 0; i < options.items.length; i++) {
+        if (options.items[i].id === "delete"){
+          actionDelete = options.items[i];
+          actionDelete.needSeparator = 0;
+          actionDelete.title = "";
+          actionDelete.iconName = "icon-actiondelete";
+        } else if (options.items[i].id === "duplicate") {
+          actionCopy = options.items[i];
+          actionCopy.title = "";
+          actionCopy.iconName = "icon-actioncopy";
+        }
+      }
+      options.items.length = 0;
+      options.items.push(action1);
+      options.items.push(action2);
+      options.items.push(actionCopy);
+      options.items.push(actionDelete);
+      // Insert a new action before the "delete" action or at the end.
+      // if (index > -1) {
+      //     options.items.splice(index, 0, barItem);
+      // } else {
+      //     options.items.push(barItem);
+      // }
+    });
     //Make toolbox active by default
     creator.rightContainerActiveItem("toolbox");
     creator.toolbox.clearItems();
@@ -22,7 +116,7 @@ class SurveyReactV2 extends Component {
         iconName: "header",
         title: "Header",
         json: {
-            "type": "header",
+            "type": "expression",
         }
       });
       creator.toolbox.addItem({
@@ -53,10 +147,7 @@ class SurveyReactV2 extends Component {
         iconName: "icon-number",
         title: "Number",
         json: {
-            "type": "text",
-            "name": "q1",
-            "placeHolder": "Input Number",
-            "inputType": "number",
+            "type": "checkbox",
         }
       });
   
@@ -76,6 +167,11 @@ class SurveyReactV2 extends Component {
           ],
         }
       });
+
+      for (var i = 0; i < creator.tabs.length; i++) {
+        console.log(creator.tabs[i]);
+      }
+
     return (
         <div>
       
@@ -87,6 +183,12 @@ class SurveyReactV2 extends Component {
         <i data-fa-symbol="icon-text1" className="fas fs-text fa-fw"></i>
         <i data-fa-symbol="icon-number" className="fas fa-hashtag fa-fw"></i>
         <i data-fa-symbol="icon-email" className="fas fa-envelope-open-text fa-fw"></i>
+        <i data-fa-symbol="icon-undo" className="fas fa-undo-alt"></i>
+        <i data-fa-symbol="icon-redo" className="fas fa-redo-alt"></i>
+        <i data-fa-symbol="icon-settings" className="fas fa-settings"></i>
+        <i data-fa-symbol="icon-action1" className="fas fa-undo-alt"></i>
+        <i data-fa-symbol="icon-action2" className="fas fa-redo-alt"></i>
+        <i data-fa-symbol="icon-action3" className="fas fa-settings"></i>
 
         {/* <SurveyCreator.SurveyCreatorComponent creator={creator} />; */}
         <SurveyReact.SurveyActionBar model={creator.toolbar}/>

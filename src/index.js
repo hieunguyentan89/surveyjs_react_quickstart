@@ -8,5 +8,11 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+const elUndo = document.getElementById('icon-undo');
+elUndo.parentNode.removeChild(elUndo);
+const elRedo = document.getElementById('icon-redo');
+elRedo.parentNode.removeChild(elRedo);
+const elSetting = document.getElementById('icon-settings');
+elSetting.parentNode.removeChild(elSetting);
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
