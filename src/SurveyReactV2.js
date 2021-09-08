@@ -116,7 +116,7 @@ class SurveyReactV2 extends Component {
         iconName: "header",
         title: "Header",
         json: {
-            "type": "expression",
+            "type": "header",
         }
       });
       creator.toolbox.addItem({

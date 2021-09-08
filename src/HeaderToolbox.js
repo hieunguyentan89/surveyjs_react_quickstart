@@ -22,11 +22,11 @@ export function HeaderToolbox() {
             init() {
               //Register a new type using the empty question as the base.
               // Survey.Serializer.addClass("header", [], null, "expression");
-              Survey.Serializer.addClass("header", [], null, "checkbox");
+              Survey.Serializer.addClass("header", [], null, "expression");
               Survey.JsonObject.metaData.addProperties("header", [
-                { name: "internal header name", category: "general" , visibleIndex: 0},
-                { name: "header", category: "general", visibleIndex: 1 },
-                { name: "header description", category: "general", visibleIndex: 2},
+                { name: "name", displayName: "Internal Header Name", category: "general" , visibleIndex: 0},
+                { name: "title",displayName :"Header", category: "general", visibleIndex: 1 },
+                { name: "description", displayName: "Header Description", category: "general", visibleIndex: 2},
             ]);
             },
             //Use this function to create a new class or add new properties or remove unneeded properties from your widget
