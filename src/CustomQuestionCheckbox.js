@@ -9,14 +9,26 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
     }
 
     onclick(el) {
-      // const question = el.question;
-      // const itemValue = question.creator.createNewItemValue(question);
-      // question.choices.push(itemValue);
+
+      const question = el.props.question;
+      const isNew = !question.isItemInList(question.newItemValue);
+      if (isNew) {
+        const nextValue1 = el.props.creator.getNextItemValue(question);
+        const newValue = new Survey.ItemValue(nextValue1);
+
+        question.choices.push(newValue);
+        const nextValue = el.props.creator.getNextItemValue(question);
+
+        question.newItemValue.value = nextValue;
+      }
+      console.log(el);
     }
 
     renderElement() {
-      console.log(this.props);
+
       const question = this.props.question;
+
+
       var cssClasses = question.cssClasses;
       return (
         <fieldset
@@ -28,7 +40,7 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
           {this.question.hasColumns
             ? this.getColumns(cssClasses)
             : this.getItems(cssClasses)}
-          <button onClick={this.onclick(this)}>Add Item</button>
+          <button onClick={() => this.onclick(this)}>Add Item</button>
         </fieldset>
       );
     }
