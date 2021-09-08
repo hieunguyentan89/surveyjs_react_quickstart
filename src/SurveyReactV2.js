@@ -5,14 +5,17 @@ import * as SurveyCreator from "survey-creator-react";
 import { HeaderToolbox } from "./HeaderToolbox";
 import CustomCreator from "./CustomDesigner";
 import CustomToolboxWrapper from "./CustomToolboxWrapper";
+import CustomQuestionCheckbox from "./CustomQuestionCheckbox";
 import "survey-knockout/modern.css";
 import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
+import { MultiCheckboxToolbox } from "./MultiCheckboxToolbox";
 
 
 class SurveyReactV2 extends Component {
   render() {
     HeaderToolbox();
+    MultiCheckboxToolbox();
     // SurveyReact.ReactElementFactory.Instance.registerElement(
     //   "svc-question",
     //   (props) => {
@@ -26,6 +29,9 @@ class SurveyReactV2 extends Component {
   //     return React.createElement(CustomToolboxWrapper, props);
   //   }
   // );
+  SurveyReact.ReactQuestionFactory.Instance.registerQuestion("checkbox", (props) => {
+    return React.createElement(CustomQuestionCheckbox, props);
+  });
     var creator = new SurveyCreator.SurveyCreator({}, {});
     // creator.toolbarItems.push(
     //   new Survey.Action({
@@ -120,6 +126,15 @@ class SurveyReactV2 extends Component {
         }
       });
       creator.toolbox.addItem({
+        name: "multicheckbox",
+        isCopied: true,
+        iconName: "icon-multi-check",
+        title: "Multi Checkbox",
+        json: {
+            "type": "multicheckbox",
+        }
+      });
+      creator.toolbox.addItem({
         name: "inputtext",
         iconName: "icon-text1",
         title: "Text",
@@ -189,6 +204,7 @@ class SurveyReactV2 extends Component {
         <i data-fa-symbol="icon-action1" className="fas fa-undo-alt"></i>
         <i data-fa-symbol="icon-action2" className="fas fa-redo-alt"></i>
         <i data-fa-symbol="icon-action3" className="fas fa-settings"></i>
+        <i data-fa-symbol="icon-multi-check" className="fas fa-trash"></i>
 
         {/* <SurveyCreator.SurveyCreatorComponent creator={creator} />; */}
         <SurveyReact.SurveyActionBar model={creator.toolbar}/>
