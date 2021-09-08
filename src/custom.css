@@ -93,3 +93,7 @@
 .sd-container-modern__title {
   display: none;
 }
+
+.sd-question__num {
+  display: none;
+}

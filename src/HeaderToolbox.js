@@ -22,12 +22,11 @@ export function HeaderToolbox() {
             init() {
               //Register a new type using the empty question as the base.
               // Survey.Serializer.addClass("header", [], null, "expression");
-              Survey.Serializer.addClass("header", [], null, "expression");
-              Survey.JsonObject.metaData.addProperties("header", [
+              Survey.Serializer.addClass("header", [
                 { name: "name", displayName: "Internal Header Name", category: "general" , visibleIndex: 0},
                 { name: "title",displayName :"Header", category: "general", visibleIndex: 1 },
                 { name: "description", displayName: "Header Description", category: "general", visibleIndex: 2},
-            ]);
+              ], null, "expression");
             },
             //Use this function to create a new class or add new properties or remove unneeded properties from your widget
             //activatedBy tells how your widget has been activated by: property, type or customType
@@ -58,33 +57,6 @@ export function HeaderToolbox() {
             afterRender: function (question, el) {
                 //el is our root element in htmlTemplate, is "div" in our case
                 //get the text element
-                var text = el.getElementsByTagName("input")[0];
-                var text1 = el.getElementsByTagName("input")[1];
-                var text2 = el.getElementsByTagName("input")[2];
-                console.log(text);
-                console.log(text1);
-                console.log(text2);
-          
-                question.registerFunctionOnPropertyValueChanged(
-                  "header",
-                  function () {
-                    text.value = question.header;
-                  }
-                );
-          
-                question.registerFunctionOnPropertyValueChanged(
-                  "internal header name",
-                  function () {
-                    text1.value = question['internal header name'];
-                  }
-                );
-          
-                question.registerFunctionOnPropertyValueChanged(
-                  "header description",
-                  function () {
-                    text2.value = question["header description"];
-                  }
-                );
             },
             //Use it to destroy the widget. It is typically needed by jQuery widgets
             willUnmount: function (question, el) {
