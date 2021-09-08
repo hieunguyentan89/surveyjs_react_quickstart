@@ -384,9 +384,9 @@ class SurveyCreator extends Component {
     return (<div>
       <div>
       
-        <i data-fa-symbol="icon-actioncopy" className="fas fa-clone fa-fw"></i>
+        <i data-fa-symbol="icon-action-clone" className="fas fa-clone fa-fw"></i>
         <i data-fa-symbol="icon-actiondragelement" className="fas fa-arrows-alt fa-fw"></i>
-        <i data-fa-symbol="icon-actiondelete" className="fas fa-trash fa-fw"></i>
+        <i data-fa-symbol="icon-action-delete" className="fas fa-trash fa-fw"></i>
         <i data-fa-symbol="edit" className="fas fa-pencil fa-fw"></i>
         <i data-fa-symbol="header" className="fas fa-heading fa-fw"></i>
       </div>

@@ -35,7 +35,7 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
           className={cssClasses.root}
           ref={(fieldset) => (this.control = fieldset)}
         >
-          
+
           <legend aria-label={question.locTitle.renderedHtml} />
           {this.question.hasColumns
             ? this.getColumns(cssClasses)

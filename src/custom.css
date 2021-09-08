@@ -1,3 +1,4 @@
+
 .sv-action-bar {
   float: right;
 }
@@ -9,7 +10,7 @@
   left: auto;
   top: auto;
   height: 100%;
-  width: 28px;
+  width: 34px;
 }
 
 .svc-question__content {
@@ -20,48 +21,79 @@
 }
 
 .svc-question__drag-element {
-  width: 33.8px;
+  width: 34px;
   height: 34px;
-  padding: 7px 5.8px 7px 8px;
+  padding: 4px 7px;
   border-radius: 5px 0 0 5px;
   background-color: #269cd2;
+  border-color: #269cd2;
 }
 
 .svc-question__drag-element:after {
   font-family: "Font Awesome 5 Free";
-  content: "\f0b2"; 
-  font-weight: 900;
-  width: 20px;
-  height: 20px;
-  padding: 1px 2px 1px 0;
-  /* background-color: #eee; */
-  color: #eee;
+  content: "\f0b2";
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
 }
 
 .svc-question__content-actions {
   bottom: calc(-4 * var(--base-unit, 9px)) !important;
   background-color: #269cd2;
-  color: #eee;
+  color: #fff;
   left: auto;
-  right: 0%;
+  right: calc(0% - 2px);
   width: 152px !important;
   height: 34px !important;
   border-radius: 0 0 5px 5px;
 }
+.svc-question__content-actions  .sv-action-bar {
+  height: inherit;
+}
+.svc-question__content-actions  .sv-action-bar .sv-action{
+  height: inherit;
+}
+.sv-action-bar-item--action1 {
+  margin-left: 8px;
+}
+.sv-action-bar-item--action-delete {
+  margin-right: 8px;
+}
+.sv-action-bar-item {
+  border: none;
+}
+.sv-action-bar-item:focus {
+  border: none !important;
+}
 
-.sv-action__content .sv-svg-icon {
+.sv-action-bar-item--action1 .sv-action__content .sv-svg-icon {
   width: 20px !important;
   height: 18px !important;
+}
+.sv-action-bar-item--action2 .sv-action__content .sv-svg-icon {
+  width: 18px !important;
+  height: 18px !important;
+}
+.sv-action-bar-item--action-clone .sv-action__content .sv-svg-icon {
+  width: 18px !important;
+  height: 18px !important;
+}
+.sv-action-bar-item--action-delete .sv-action__content .sv-svg-icon {
+  width: 16px !important;
+  height: 18px !important;
+}
+
+.sv-action-bar-item--action2 .sv-action__content .sv-svg-icon {
 }
 
 .svc-row {
   margin: 20px;
 }
 
-.svc-action {
+/* .svc-action {
   width: 20px !important;
   height: 18px !important;
-}
+} */
 
 .sv-action-bar .sv-action__content {
   padding-right: unset !important;

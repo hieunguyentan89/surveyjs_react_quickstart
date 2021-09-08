@@ -45,11 +45,11 @@ class CustomDesignerTab extends SurveyCreator.TabDesignerComponent {
 
         // return (
         //     <React.Fragment>
-                
+
         //         <div className={designerTabClassName}>
         //             {/* <SurveyReact.SurveyActionBar model={this.creator.toolbar} /> */}
         //             <div className={survey.css.container}>
-                        
+
         //                 <SurveyCreator.SurveyNavigation survey={survey} location="top" />
         //                 {this.renderPages()}
         //                 <SurveyCreator.SurveyNavigation survey={survey} location="bottom" css={survey.css} />
@@ -59,18 +59,18 @@ class CustomDesignerTab extends SurveyCreator.TabDesignerComponent {
         //             {SurveyReact.ReactElementFactory.Instance.createElement('svc-toolbox', { creator: this.creator })}
         //             {/* {SurveyReact.ReactElementFactory.Instance.createElement('svc-property-grid', { model: this.creator })} */}
         //         </div>
-                
+
         //     </React.Fragment>
         // );
     }
 }
 
-SurveyReact.ReactElementFactory.Instance.registerElement(
-    "svc-tab-designer",
-    (props) => {
-        return React.createElement(CustomDesignerTab, props);
-    }
-);
+// SurveyReact.ReactElementFactory.Instance.registerElement(
+//     "svc-tab-designer",
+//     (props) => {
+//         return React.createElement(CustomDesignerTab, props);
+//     }
+// );
 
 class CustomCreator extends SurveyCreator.SurveyCreatorComponent {
     constructor(props) {

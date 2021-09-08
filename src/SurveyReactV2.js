@@ -11,6 +11,20 @@ import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
 import { MultiCheckboxToolbox } from "./MultiCheckboxToolbox";
 
+// SurveyCreator
+//     .SurveyQuestionEditorDefinition
+//     .definition["question"]
+//     .properties = [
+//         {   name: "name",
+//             title: "Internal Name"
+//         }, {
+//             name: "title",
+//             title: "Title"
+//         }, {
+//             name: "description",
+//             title: "Description"
+//         }
+//     ];
 
 class SurveyReactV2 extends Component {
   render() {
@@ -22,7 +36,7 @@ class SurveyReactV2 extends Component {
     //       return React.createElement(CustomQuestionAdorner, props);
     //   }
     // );
-      
+
   // SurveyReact.ReactElementFactory.Instance.registerElement(
   //   "svc-toolbox",
   //   (props) => {
@@ -49,62 +63,58 @@ class SurveyReactV2 extends Component {
       // If an element doesn't have such a property, the element is not a question.
       if (options.obj.startWithNewLine === undefined) return;
       var question = options.obj;
+      console.log('// QUESTION: ', question);
       // Define a new bar item (action).
       var action1 = {
           id: "action1", // Unique id
-          css: () => "sv-action-bar-item--action1",
+          css: "sv-action-bar-item--action1",
           title: "", // Item text
           // An icon to render depending on a property's value:
           iconName: "icon-action1",
           // An action to perform on a click:
           action: () => {
-              alert('action1');
+              // Survey.Serializer.findProperty("question", "titleLocation").setChoices(["default", "hidden"]);
+              // Survey.Serializer.findProperty("question", "titleLocation").choicesValue = ["top", "bottom", "hidden"];
+              console.log('zzzz', Survey.Serializer.findProperty("question", "titleLocation"));
+              console.log('zzzz', Survey.Serializer.findProperty("question", "titleLocation").defaultValue);
+              // Survey.Serializer.findProperty("question", "titleLocation").defaultValue("hidden");
           }
       };
 
       var action2 = {
         id: "action2", // Unique id
-        css: () => "sv-action-bar-item--action2",
+        css: "sv-action-bar-item--action2",
         title: "", // Item text
         // An icon to render depending on a property's value:
         iconName: "icon-action2",
         // An action to perform on a click:
-        action: () => {
-            alert('action2');
+        action: (a, b, c) => {
+          console.log('zzzz', Survey);
+          Survey.Serializer.findProperty("question", "title").isRequired = true;
         }
       };
 
-      var action3 = {
-        id: "action3", // Unique id
-        css: () => "sv-action-bar-item--action3",
-        title: "", // Item text
-        // An icon to render depending on a property's value:
-        iconName: "icon-action3",
-        // An action to perform on a click:
-        action: () => {
-            alert('action3');
-        }
-      };
       // Find the "delete" action's position.
       var actionDelete;
-      var actionCopy;
-      var index = -1;
+      var actionClone;
       for (var i = 0; i < options.items.length; i++) {
         if (options.items[i].id === "delete"){
           actionDelete = options.items[i];
           actionDelete.needSeparator = 0;
           actionDelete.title = "";
-          actionDelete.iconName = "icon-actiondelete";
+          actionDelete.iconName = "icon-action-delete";
+          actionDelete.css = "sv-action-bar-item--action-delete";
         } else if (options.items[i].id === "duplicate") {
-          actionCopy = options.items[i];
-          actionCopy.title = "";
-          actionCopy.iconName = "icon-actioncopy";
+          actionClone = options.items[i];
+          actionClone.title = "";
+          actionClone.iconName = "icon-action-clone";
+          actionClone.css = "sv-action-bar-item--action-clone";
         }
       }
       options.items.length = 0;
       options.items.push(action1);
       options.items.push(action2);
-      options.items.push(actionCopy);
+      options.items.push(actionClone);
       options.items.push(actionDelete);
       // Insert a new action before the "delete" action or at the end.
       // if (index > -1) {
@@ -126,10 +136,10 @@ class SurveyReactV2 extends Component {
         }
       });
       creator.toolbox.addItem({
-        name: "multicheckbox",
+        name: "multiselect",
         isCopied: true,
-        iconName: "icon-multi-check",
-        title: "Multi Checkbox",
+        iconName: "icon-multi-select",
+        title: "Multi-Select",
         json: {
             "type": "multicheckbox",
             "hasNone": true,
@@ -159,7 +169,7 @@ class SurveyReactV2 extends Component {
             "inputType": "password",
         }
       });
-  
+
       creator.toolbox.addItem({
         name: "inputnumber",
         iconName: "icon-number",
@@ -168,7 +178,7 @@ class SurveyReactV2 extends Component {
             "type": "checkbox",
         }
       });
-  
+
       creator.toolbox.addItem({
         name: "inputemail",
         iconName: "icon-email",
@@ -192,10 +202,10 @@ class SurveyReactV2 extends Component {
 
     return (
         <div>
-      
-        <i data-fa-symbol="icon-actioncopy" className="fas fa-clone fa-fw"></i>
+
+        <i data-fa-symbol="icon-action-clone" className="fas fa-clone fa-fw"></i>
         <i data-fa-symbol="icon-actiondragelement" className="fas fa-arrows-alt fa-fw"></i>
-        <i data-fa-symbol="icon-actiondelete" className="fas fa-trash fa-fw"></i>
+        <i data-fa-symbol="icon-action-delete" className="fas fa-trash fa-fw"></i>
         <i data-fa-symbol="edit" className="fas fa-pencil fa-fw"></i>
         <i data-fa-symbol="header" className="fas fa-heading fa-fw"></i>
         <i data-fa-symbol="icon-text1" className="fas fs-text fa-fw"></i>
@@ -204,17 +214,19 @@ class SurveyReactV2 extends Component {
         <i data-fa-symbol="icon-undo" className="fas fa-undo-alt"></i>
         <i data-fa-symbol="icon-redo" className="fas fa-redo-alt"></i>
         <i data-fa-symbol="icon-settings" className="fas fa-settings"></i>
-        <i data-fa-symbol="icon-action1" className="fas fa-undo-alt"></i>
-        <i data-fa-symbol="icon-action2" className="fas fa-redo-alt"></i>
+        <i data-fa-symbol="icon-action1" className="fas fa-eye"></i>
+        <i data-fa-symbol="icon-action2" className="fas fa-asterisk"></i>
         <i data-fa-symbol="icon-action3" className="fas fa-settings"></i>
-        <i data-fa-symbol="icon-multi-check" className="fas fa-trash"></i>
+        <i data-fa-symbol="icon-multi-select" className="fas fa-check-square icon-multi-select"></i>
 
-        {/* <SurveyCreator.SurveyCreatorComponent creator={creator} />; */}
-        <SurveyReact.SurveyActionBar model={creator.toolbar}/>
-        <CustomCreator creator={creator} />
+        <SurveyCreator.SurveyCreatorComponent creator={creator} />
+        {/*
+          <SurveyReact.SurveyActionBar model={creator.toolbar}/>
+          <CustomCreator creator={creator} />
+        */}
       </div>
     )
-    
+
   }
 }
 
