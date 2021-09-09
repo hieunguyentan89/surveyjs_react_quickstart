@@ -3,9 +3,13 @@
   float: right;
 }
 
+.sd-page {
+  align-items: center;
+}
+
 .svc-question__drag-area {
   visibility: visible;
-  right: 0px !important;
+  right: calc(0% - 1px) !important;
   bottom: 0px !important;
   left: auto;
   top: auto;
