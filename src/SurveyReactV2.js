@@ -66,11 +66,11 @@ class SurveyReactV2 extends Component {
       // Define a new bar item (action).
       const showhideTitleAction = new Survey.Action({
         id: "action1",
-        css: "sv-action-bar-item--action1",
+        css: "sv-action-bar-item--action-show-hide",
         title: "",
         visibleIndex : 8,
         iconName: question.titleLocation === "default"
-          ? "icon-action1" : "icon-action2",
+          ? "icon-eye" : "icon-eye-slash",
         iconSize: 16,
         action: () => {
           {
@@ -88,7 +88,7 @@ class SurveyReactV2 extends Component {
           actionDelete = options.items[i];
           actionDelete.needSeparator = 0;
           actionDelete.title = "";
-          actionClone.visibleIndex = 14;
+          actionDelete.visibleIndex = 14;
           actionDelete.iconName = "icon-action-delete";
           actionDelete.css = "sv-action-bar-item--action-delete";
         } else if (options.items[i].id === "duplicate") {
@@ -100,8 +100,8 @@ class SurveyReactV2 extends Component {
         } else if (options.items[i].id === "isrequired") {
           actionRequire = options.items[i];
           actionRequire.title = "";
-          actionRequire.iconName = "icon-action2";
-          actionRequire.css = "sv-action-bar-item--action-require";
+          actionRequire.iconName = "icon-asterisk";
+          actionRequire.css = "sv-action-bar-item--action-required";
           actionRequire.visibleIndex = 10;
         }
       }
@@ -116,10 +116,7 @@ class SurveyReactV2 extends Component {
         "isRequired",
         () => {
           actionRequire.iconName = question.isRequired
-            ? "icon-action1" : "icon-action2";
-            actionRequire.css = question.isRequired
-            ? "sv-action-bar-item--action3"
-            : "";
+            ? "icon-email" : "icon-asterisk";
         },
         "isRequiredAdorner"
       );
@@ -128,10 +125,7 @@ class SurveyReactV2 extends Component {
         "titleLocation",
         () => {
           showhideTitleAction.iconName = question.titleLocation === "default"
-          ? "icon-action1" : "icon-action2";
-            showhideTitleAction.css = question.titleLocation === "default"
-            ? "sv-action-bar-item--action1"
-            : "";
+          ? "icon-eye" : "icon-eye-slash";
         },
         ""
       );
@@ -227,9 +221,9 @@ class SurveyReactV2 extends Component {
         <i data-fa-symbol="icon-undo" className="fas fa-undo-alt"></i>
         <i data-fa-symbol="icon-redo" className="fas fa-redo-alt"></i>
         <i data-fa-symbol="icon-settings" className="fas fa-settings"></i>
-        <i data-fa-symbol="icon-action1" className="fas fa-eye"></i>
-        <i data-fa-symbol="icon-action2" className="fas fa-asterisk"></i>
-        <i data-fa-symbol="icon-action3" className="fas fa-settings"></i>
+        <i data-fa-symbol="icon-eye" className="fas fa-eye"></i>
+        <i data-fa-symbol="icon-eye-slash" className="fas fa-eye-slash"></i>
+        <i data-fa-symbol="icon-asterisk" className="fas fa-asterisk"></i>
         <i data-fa-symbol="icon-multi-select" className="fas fa-check-square icon-multi-select"></i>
 
         <SurveyCreator.SurveyCreatorComponent creator={creator} />

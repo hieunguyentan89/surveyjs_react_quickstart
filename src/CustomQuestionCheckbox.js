@@ -27,6 +27,7 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
     renderElement() {
 
       const question = this.props.question;
+      console.log('props', this.props);
 
 
       var cssClasses = question.cssClasses;

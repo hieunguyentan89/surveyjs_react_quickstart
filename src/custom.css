@@ -61,7 +61,7 @@ survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(butto
 .svc-question__content-actions  .sv-action-bar .sv-action{
   height: inherit;
 }
-.sv-action-bar-item--action1 {
+.sv-action-bar-item--action-show-hide {
   margin-left: 8px;
 }
 .sv-action-bar-item--action-delete {
@@ -74,11 +74,11 @@ survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(butto
   border: none !important;
 }
 
-.sv-action-bar-item--action1 .sv-action__content .sv-svg-icon {
+.sv-action-bar-item--action-show-hide .sv-action__content .sv-svg-icon {
   width: 20px !important;
   height: 18px !important;
 }
-.sv-action-bar-item--action2 .sv-action__content .sv-svg-icon {
+.sv-action-bar-item--action-required .sv-action__content .sv-svg-icon {
   width: 18px !important;
   height: 18px !important;
 }
@@ -91,7 +91,7 @@ survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(butto
   height: 18px !important;
 }
 
-.sv-action-bar-item--action2 .sv-action__content .sv-svg-icon {
+.sv-action-bar-item--action-required .sv-action__content .sv-svg-icon {
 }
 
 .svc-row {
