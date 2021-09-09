@@ -63,65 +63,78 @@ class SurveyReactV2 extends Component {
       // If an element doesn't have such a property, the element is not a question.
       if (options.obj.startWithNewLine === undefined) return;
       var question = options.obj;
-      console.log('// QUESTION: ', question);
       // Define a new bar item (action).
-      var action1 = {
-          id: "action1", // Unique id
-          css: "sv-action-bar-item--action1",
-          title: "", // Item text
-          // An icon to render depending on a property's value:
-          iconName: "icon-action1",
-          // An action to perform on a click:
-          action: () => {
-              // Survey.Serializer.findProperty("question", "titleLocation").setChoices(["default", "hidden"]);
-              // Survey.Serializer.findProperty("question", "titleLocation").choicesValue = ["top", "bottom", "hidden"];
-              console.log('zzzz', Survey.Serializer.findProperty("question", "titleLocation"));
-              console.log('zzzz', Survey.Serializer.findProperty("question", "titleLocation").defaultValue);
-              // Survey.Serializer.findProperty("question", "titleLocation").defaultValue("hidden");
+      const showhideTitleAction = new Survey.Action({
+        id: "action1",
+        css: "sv-action-bar-item--action1",
+        title: "",
+        visibleIndex : 8,
+        iconName: question.titleLocation === "default"
+          ? "icon-action1" : "icon-action2",
+        iconSize: 16,
+        action: () => {
+          {
+            question.titleLocation = question.titleLocation === "default" ? "hidden" : "default";
           }
-      };
-
-      var action2 = {
-        id: "action2", // Unique id
-        css: "sv-action-bar-item--action2",
-        title: "", // Item text
-        // An icon to render depending on a property's value:
-        iconName: "icon-action2",
-        // An action to perform on a click:
-        action: (a, b, c) => {
-          console.log('zzzz', Survey);
-          Survey.Serializer.findProperty("question", "title").isRequired = true;
         }
-      };
+      });
 
       // Find the "delete" action's position.
       var actionDelete;
       var actionClone;
+      var actionRequire;
       for (var i = 0; i < options.items.length; i++) {
         if (options.items[i].id === "delete"){
           actionDelete = options.items[i];
           actionDelete.needSeparator = 0;
           actionDelete.title = "";
+          actionClone.visibleIndex = 14;
           actionDelete.iconName = "icon-action-delete";
           actionDelete.css = "sv-action-bar-item--action-delete";
         } else if (options.items[i].id === "duplicate") {
           actionClone = options.items[i];
           actionClone.title = "";
+          actionClone.visibleIndex = 12;
           actionClone.iconName = "icon-action-clone";
           actionClone.css = "sv-action-bar-item--action-clone";
+        } else if (options.items[i].id === "isrequired") {
+          actionRequire = options.items[i];
+          actionRequire.title = "";
+          actionRequire.iconName = "icon-action2";
+          actionRequire.css = "sv-action-bar-item--action-require";
+          actionRequire.visibleIndex = 10;
         }
       }
+
       options.items.length = 0;
-      options.items.push(action1);
-      options.items.push(action2);
+      options.items.push(showhideTitleAction);
+      options.items.push(actionRequire);
       options.items.push(actionClone);
       options.items.push(actionDelete);
-      // Insert a new action before the "delete" action or at the end.
-      // if (index > -1) {
-      //     options.items.splice(index, 0, barItem);
-      // } else {
-      //     options.items.push(barItem);
-      // }
+
+      question.registerFunctionOnPropertyValueChanged(
+        "isRequired",
+        () => {
+          actionRequire.iconName = question.isRequired
+            ? "icon-action1" : "icon-action2";
+            actionRequire.css = question.isRequired
+            ? "sv-action-bar-item--action3"
+            : "";
+        },
+        "isRequiredAdorner"
+      );
+
+      question.registerFunctionOnPropertyValueChanged(
+        "titleLocation",
+        () => {
+          showhideTitleAction.iconName = question.titleLocation === "default"
+          ? "icon-action1" : "icon-action2";
+            showhideTitleAction.css = question.titleLocation === "default"
+            ? "sv-action-bar-item--action1"
+            : "";
+        },
+        ""
+      );
     });
     //Make toolbox active by default
     creator.rightContainerActiveItem("toolbox");

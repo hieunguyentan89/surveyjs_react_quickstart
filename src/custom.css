@@ -1,3 +1,7 @@
+survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(button):focus, survey-creator .svc-page__question-type-selector:focus, .svc-creator .sv-action-bar-item:not(button):focus, .svc-creator *:not(button):focus, .svc-creator .svc-page__question-type-selector:focus, .sv-popup .sv-action-bar-item:not(button):focus, .sv-popup *:not(button):focus, .sv-popup .svc-page__question-type-selector:focus {
+  outline: none !important;
+}
+
 
 .sv-action-bar {
   float: right;
