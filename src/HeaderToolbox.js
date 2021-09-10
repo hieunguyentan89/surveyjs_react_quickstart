@@ -26,6 +26,7 @@ export function HeaderToolbox() {
                 { name: "name", displayName: "Internal Header Name", category: "general" , visibleIndex: 0},
                 { name: "title",displayName :"Header", category: "general", visibleIndex: 1 },
                 { name: "description", displayName: "Header Description", category: "general", visibleIndex: 2},
+                { name: "visible", displayName: "Is this visible header?", default: true, category: "general"},
               ], null, "expression");
             },
             //Use this function to create a new class or add new properties or remove unneeded properties from your widget

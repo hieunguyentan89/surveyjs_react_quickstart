@@ -137,3 +137,78 @@ survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(butto
 .sd-question__num {
   display: none;
 }
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  min-width: 55px;
+  width: auto;
+  height: 24px;
+  border-radius: 16px;
+}
+
+input[name="toggle"]:checked+.slidercontainer {
+  background-color: #0099db;
+}
+
+
+input[name="toggle"]:checked+.slidercontainer>.ballslider {
+  transform: translateX(29px);
+}
+
+.slidercontainer {
+  min-width: 55px;
+  width: min-content;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 16px;
+}
+
+.ballslider {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.active-text {
+  height: 14px;
+  font-size: 10px;
+  text-align: left;
+  color: #fff;
+  padding-top: 5px;
+  padding-left: 8px;
+  user-select: none;
+}
+
+.inactive-text {
+  height: 14px;
+  font-size: 10px;
+  color: #000;
+  padding-top: 5px;
+  padding-right: 8px;
+  padding-left: 30px;
+  text-align: right;
+  user-select: none;
+}
+
+.sd-toggle-custom {
+  display: flex;
+}
+
+.sd-boolean-custom {
+  position: absolute;
+  right: 0%;
+}

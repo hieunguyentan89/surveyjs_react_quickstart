@@ -10,6 +10,7 @@ import "survey-knockout/modern.css";
 import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
 import { MultiCheckboxToolbox } from "./MultiCheckboxToolbox";
+import CustomBooleanCheckbox from "./CustomBooleanCheckbox";
 
 // SurveyCreator
 //     .SurveyQuestionEditorDefinition
@@ -45,6 +46,10 @@ class SurveyReactV2 extends Component {
   // );
   SurveyReact.ReactQuestionFactory.Instance.registerQuestion("checkbox", (props) => {
     return React.createElement(CustomQuestionCheckbox, props);
+  });
+
+  SurveyReact.ReactQuestionFactory.Instance.registerQuestion("sv-boolean-checkbox", (props) => {
+    return React.createElement(CustomBooleanCheckbox, props);
   });
     var creator = new SurveyCreator.SurveyCreator({}, {});
     // creator.toolbarItems.push(
