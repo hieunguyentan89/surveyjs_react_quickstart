@@ -99,7 +99,7 @@ const CustomStringEdit = (props) => {
                         className="svc-string-editor__button svc-string-editor__button--edit"
                         onClick={() => EditText()}
                         size={16}
-                        iconName={"icon-pencil"}
+                        iconName={"icon-pencil-alt"}
                     ></SurveyReact.SvgIcon>
                     {props.isDraggable &&
                         <span

@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import * as Survey from "survey-core";
 import * as SurveyReact from "survey-react-ui";
 import * as SurveyCreator from "survey-creator-react";
-import { HeaderToolbox } from "./HeaderToolbox";
+import { HeaderToolbox } from "./component/toolbox/HeaderToolbox";
 import CustomCreator from "./CustomDesigner";
 import CustomToolboxWrapper from "./CustomToolboxWrapper";
-import CustomQuestionCheckbox from "./CustomQuestionCheckbox";
+import CustomQuestionCheckbox from "./component/multicheckbox/CustomQuestionCheckbox";
 import "survey-knockout/modern.css";
 import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
-import { MultiCheckboxToolbox } from "./MultiCheckboxToolbox";
-import CustomBooleanCheckbox from "./CustomBooleanCheckbox";
-import CustomItemMultiCheckbox from "./CustomItemMultiCheckbox";
-import CustomIconSVG from "./CustomIconSVG";
+import { MultiCheckboxToolbox } from "./component/toolbox/MultiCheckboxToolbox";
+import CustomBooleanCheckbox from "./component/toolbox/properties/CustomBooleanCheckbox";
+import CustomItemValueAdorner from "./component/multicheckbox/CustomItemValueAdorner";
+import CustomIconSVG from "./component/CustomIconSVG";
 
 // SurveyCreator
 //     .SurveyQuestionEditorDefinition
@@ -57,7 +57,7 @@ class SurveyReactV2 extends Component {
   SurveyReact.ReactElementFactory.Instance.registerElement(
     "svc-item-value",
     (props) => {
-      return React.createElement(CustomItemMultiCheckbox, props);
+      return React.createElement(CustomItemValueAdorner, props);
     }
   );
     var creator = new SurveyCreator.SurveyCreator({}, {});

@@ -91,17 +91,9 @@ survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(butto
   height: 18px !important;
 }
 
-.sv-action-bar-item--action-required .sv-action__content .sv-svg-icon {
-}
-
 .svc-row {
   margin: 20px;
 }
-
-/* .svc-action {
-  width: 20px !important;
-  height: 18px !important;
-} */
 
 .sv-action-bar .sv-action__content {
   padding-right: unset !important;
@@ -111,16 +103,11 @@ survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(butto
   background-color: transparent;
 }
 
-/* .svc-properties-wrapper {
-  width: 300px;
-} */
-
 .svc-property-panel {
   min-width: 300px;
   max-width: 300px;
   height: 100%;
 }
-
 
 .sd-page__title {
   display: none;
@@ -137,7 +124,6 @@ survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(butto
 .sd-question__num {
   display: none;
 }
-
 
 .switch {
   position: relative;
@@ -226,6 +212,7 @@ input[name="toggle"]:checked+.slidercontainer>.ballslider {
 
 .svc-string-editor .svc-string-editor__controls {
   width: 100px;
+  color: #269cd2;
 }
 
 .svc-string-editor__button--edit {

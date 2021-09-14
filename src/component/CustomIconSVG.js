@@ -19,6 +19,8 @@ const CustomIconSVG = () => (
     <i data-fa-symbol="icon-asterisk" className="fas fa-asterisk"></i>
     <i data-fa-symbol="icon-multi-select" className="fas fa-check-square icon-multi-select"></i>
     <i data-fa-symbol="icon-remove-item-custom" className="fas fa-trash-alt fa-fw"></i>
+    <i data-fa-symbol="icon-pencil-alt" className="fas fa-pencil-alt fa-fw"></i>
+    
   </div>
 );
 

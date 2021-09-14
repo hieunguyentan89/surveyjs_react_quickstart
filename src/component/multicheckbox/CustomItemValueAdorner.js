@@ -3,7 +3,7 @@ import * as Survey from "survey-core";
 import * as SurveyReact from "survey-react-ui";
 import * as SurveyCreator from "survey-creator-react";
 
-class CustomItemMultiCheckbox extends SurveyCreator.ItemValueAdornerComponent {
+class CustomItemValueAdorner extends SurveyCreator.ItemValueAdornerComponent {
     constructor(props) {
         super(props);
     }
@@ -32,4 +32,4 @@ class CustomItemMultiCheckbox extends SurveyCreator.ItemValueAdornerComponent {
     }
 }
 
-export default CustomItemMultiCheckbox;
+export default CustomItemValueAdorner;
