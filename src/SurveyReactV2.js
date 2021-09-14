@@ -163,9 +163,6 @@ class SurveyReactV2 extends Component {
         title: "Multi-Select",
         json: {
             "type": "multicheckbox",
-            "hasNone": true,
-            "hasOther": true,
-            "hasSelectAll": true,
         }
       });
       creator.toolbox.addItem({

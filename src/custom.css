@@ -239,3 +239,24 @@ input[name="toggle"]:checked+.slidercontainer>.ballslider {
 .sd-selectbase .svc-item-value-wrapper {
   margin-left: 0%;
 }
+
+.multicheck-button-add {
+  margin: 0 24px;
+  font-family: OpenSans;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.36;
+  letter-spacing: normal;
+  text-align: left;
+  color: #269cd2;
+  cursor: pointer;
+}
+
+.svc-flex-row-custom {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
