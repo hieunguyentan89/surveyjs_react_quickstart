@@ -2,6 +2,7 @@ import React from "react";
 import * as Survey from "survey-core";
 import * as SurveyReact from "survey-react-ui";
 import * as SurveyCreator from "survey-creator-react";
+import CustomMultiCheckboxItem from "./CustomMultiCheckboxItem";
 
 class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
     constructor(props) {
@@ -21,14 +22,38 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
 
         question.newItemValue.value = nextValue;
       }
-      console.log(el);
+    }
+
+    renderItem(
+      key,
+      item,
+      isFirst,
+      cssClasses,
+      index
+    ) {
+      const renderedItem = (
+        <CustomMultiCheckboxItem
+          key={key}
+          question={this.question}
+          cssClasses={cssClasses}
+          isDisplayMode={this.isDisplayMode}
+          item={item}
+          textStyle={this.textStyle}
+          isFirst={isFirst}
+          index={index}
+        />
+      );
+      const survey = this.question.survey;
+      let wrappedItem = null;
+      if(!!survey) {
+        wrappedItem = survey.wrapItemValue(renderedItem, this.question, item);
+      }
+      return wrappedItem ? wrappedItem : renderedItem;
     }
 
     renderElement() {
 
       const question = this.props.question;
-      console.log('props', this.props);
-
 
       var cssClasses = question.cssClasses;
       return (

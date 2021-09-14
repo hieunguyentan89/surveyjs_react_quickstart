@@ -11,6 +11,8 @@ import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
 import { MultiCheckboxToolbox } from "./MultiCheckboxToolbox";
 import CustomBooleanCheckbox from "./CustomBooleanCheckbox";
+import CustomItemMultiCheckbox from "./CustomItemMultiCheckbox";
+import CustomIconSVG from "./CustomIconSVG";
 
 // SurveyCreator
 //     .SurveyQuestionEditorDefinition
@@ -51,6 +53,13 @@ class SurveyReactV2 extends Component {
   SurveyReact.ReactQuestionFactory.Instance.registerQuestion("sv-boolean-checkbox", (props) => {
     return React.createElement(CustomBooleanCheckbox, props);
   });
+
+  SurveyReact.ReactElementFactory.Instance.registerElement(
+    "svc-item-value",
+    (props) => {
+      return React.createElement(CustomItemMultiCheckbox, props);
+    }
+  );
     var creator = new SurveyCreator.SurveyCreator({}, {});
     // creator.toolbarItems.push(
     //   new Survey.Action({
@@ -214,23 +223,7 @@ class SurveyReactV2 extends Component {
 
     return (
         <div>
-
-        <i data-fa-symbol="icon-action-clone" className="fas fa-clone fa-fw"></i>
-        <i data-fa-symbol="icon-actiondragelement" className="fas fa-arrows-alt fa-fw"></i>
-        <i data-fa-symbol="icon-action-delete" className="fas fa-trash fa-fw"></i>
-        <i data-fa-symbol="edit" className="fas fa-pencil fa-fw"></i>
-        <i data-fa-symbol="header" className="fas fa-heading fa-fw"></i>
-        <i data-fa-symbol="icon-text1" className="fas fs-text fa-fw"></i>
-        <i data-fa-symbol="icon-number" className="fas fa-hashtag fa-fw"></i>
-        <i data-fa-symbol="icon-email" className="fas fa-envelope-open-text fa-fw"></i>
-        <i data-fa-symbol="icon-undo" className="fas fa-undo-alt"></i>
-        <i data-fa-symbol="icon-redo" className="fas fa-redo-alt"></i>
-        <i data-fa-symbol="icon-settings" className="fas fa-settings"></i>
-        <i data-fa-symbol="icon-eye" className="fas fa-eye"></i>
-        <i data-fa-symbol="icon-eye-slash" className="fas fa-eye-slash"></i>
-        <i data-fa-symbol="icon-asterisk" className="fas fa-asterisk"></i>
-        <i data-fa-symbol="icon-multi-select" className="fas fa-check-square icon-multi-select"></i>
-
+          <CustomIconSVG />
         <SurveyCreator.SurveyCreatorComponent creator={creator} />
         {/*
           <SurveyReact.SurveyActionBar model={creator.toolbar}/>

@@ -212,3 +212,30 @@ input[name="toggle"]:checked+.slidercontainer>.ballslider {
   position: absolute;
   right: 0%;
 }
+
+.svc-icon-remove-item-custom {
+  display: none;
+  position: relative;
+  cursor: pointer;
+  left: calc(3 * var(--base-unit, 8px));
+} 
+
+.svc-string-editor:hover:not(:focus-within) + .svc-icon-remove-item-custom-display {
+  display: inline-block;
+}
+
+.svc-string-editor .svc-string-editor__controls {
+  width: 100px;
+}
+
+.svc-string-editor__button--edit {
+  padding-right: 20px;
+}
+
+.svc-string-editor__button--done {
+  margin-top: 0%;
+}
+
+.sd-selectbase .svc-item-value-wrapper {
+  margin-left: 0%;
+}
