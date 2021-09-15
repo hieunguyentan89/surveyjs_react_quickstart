@@ -9,30 +9,16 @@ import CustomQuestionCheckbox from "./component/multicheckbox/CustomQuestionChec
 import "survey-knockout/modern.css";
 import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
-import { MultiCheckboxToolbox } from "./component/toolbox/MultiCheckboxToolbox";
+import { MultiCheckboxToolbox, defineMultiCheckboxCSS } from "./component/toolbox/MultiCheckboxToolbox";
 import CustomBooleanCheckbox from "./component/toolbox/properties/CustomBooleanCheckbox";
 import CustomItemValueAdorner from "./component/multicheckbox/CustomItemValueAdorner";
 import CustomIconSVG from "./component/CustomIconSVG";
-
-// SurveyCreator
-//     .SurveyQuestionEditorDefinition
-//     .definition["question"]
-//     .properties = [
-//         {   name: "name",
-//             title: "Internal Name"
-//         }, {
-//             name: "title",
-//             title: "Title"
-//         }, {
-//             name: "description",
-//             title: "Description"
-//         }
-//     ];
 
 class SurveyReactV2 extends Component {
   render() {
     HeaderToolbox();
     MultiCheckboxToolbox();
+
     // SurveyReact.ReactElementFactory.Instance.registerElement(
     //   "svc-question",
     //   (props) => {
@@ -46,7 +32,7 @@ class SurveyReactV2 extends Component {
   //     return React.createElement(CustomToolboxWrapper, props);
   //   }
   // );
-  SurveyReact.ReactQuestionFactory.Instance.registerQuestion("checkbox", (props) => {
+  SurveyReact.ReactQuestionFactory.Instance.registerQuestion("multicheckbox", (props) => {
     return React.createElement(CustomQuestionCheckbox, props);
   });
 
@@ -214,10 +200,11 @@ class SurveyReactV2 extends Component {
         }
       });
 
-      for (var i = 0; i < creator.tabs.length; i++) {
-        console.log(creator.tabs[i]);
-      }
-
+    creator.onTestSurveyCreated.add(function(editor, options){
+      defineMultiCheckboxCSS(options.survey);
+    });
+    defineMultiCheckboxCSS(creator.survey);
+    
     return (
         <div>
           <CustomIconSVG />

@@ -7,6 +7,11 @@ import CustomMultiCheckboxItem from "./CustomMultiCheckboxItem";
 class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
   constructor(props) {
     super(props);
+    this.question.setCanShowOptionItemCallback((item) => this.canShowOptionItem(item));
+  }
+
+  canShowOptionItem(item) {
+    return false;
   }
 
   onAddSelectAll(el) {
@@ -32,16 +37,10 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
   }
   onAddItem(el) {
     const question = el.props.question;
-    const isNew = !question.isItemInList(question.newItemValue);
-    if (isNew) {
       const nextValue1 = el.props.creator.getNextItemValue(question);
       const newValue = new Survey.ItemValue(nextValue1);
-
       question.choices.push(newValue);
-      const nextValue = el.props.creator.getNextItemValue(question);
-
-      question.newItemValue.value = nextValue;
-    }
+      question.newItemValue.value = nextValue1;
   }
 
   renderItem(
@@ -72,9 +71,7 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
   }
 
   renderElement() {
-
     const question = this.props.question;
-    // console.log(this.props);
     var cssClasses = question.cssClasses;
     return (
       <fieldset
@@ -83,15 +80,15 @@ class CustomQuestionCheckbox extends SurveyReact.SurveyQuestionCheckbox {
       >
 
         <legend aria-label={question.locTitle.renderedHtml} />
-        { this.question.hasColumns
+        {this.question.hasColumns
           ? this.getColumns(cssClasses)
           : this.getItems(cssClasses)}
-        { question.survey instanceof SurveyCreator.DesignTimeSurveyModel &&
+        {question.survey instanceof SurveyCreator.DesignTimeSurveyModel &&
           <div className="svc-flex-row-custom">
             <span className="multicheck-button-add" onClick={() => this.onAddItem(this)}>Add Item</span>
-            <span className="multicheck-button-add" onClick={() => this.onAddOther(this)}>Add 'Other'</span>
-            <span className="multicheck-button-add" onClick={() => this.onAddNone(this)}>Add 'None'</span>
-            <span className="multicheck-button-add" onClick={() => this.onAddSelectAll(this)}>Add 'Select All'</span>
+            <span disabled={question.hasOther} className="multicheck-button-add" onClick={() => this.onAddOther(this)}>Add 'Other'</span>
+            <span disabled={question.hasNone} className="multicheck-button-add" onClick={() => this.onAddNone(this)}>Add 'None'</span>
+            <span disabled={question.hasSelectAll} className="multicheck-button-add" onClick={() => this.onAddSelectAll(this)}>Add 'Select All'</span>
           </div>
         }
 
