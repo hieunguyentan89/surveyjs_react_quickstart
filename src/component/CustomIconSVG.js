@@ -11,6 +11,7 @@ const CustomIconSVG = () => (
     <i data-fa-symbol="icon-text1" className="fas fs-text fa-fw"></i>
     <i data-fa-symbol="icon-number" className="fas fa-hashtag fa-fw"></i>
     <i data-fa-symbol="icon-email" className="fas fa-envelope-open-text fa-fw"></i>
+    <i data-fa-symbol="section" className="fas fa-envelope-open-text fa-fw"></i>
     <i data-fa-symbol="icon-undo" className="fas fa-undo-alt"></i>
     <i data-fa-symbol="icon-redo" className="fas fa-redo-alt"></i>
     <i data-fa-symbol="icon-settings" className="fas fa-settings"></i>

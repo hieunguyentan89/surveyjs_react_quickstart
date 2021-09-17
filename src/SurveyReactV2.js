@@ -3,6 +3,7 @@ import * as Survey from "survey-core";
 import * as SurveyReact from "survey-react-ui";
 import * as SurveyCreator from "survey-creator-react";
 import { HeaderToolbox } from "./component/toolbox/HeaderToolbox";
+import { SectionToolbox } from "./component/toolbox/SectionToolbox";
 import CustomCreator from "./CustomDesigner";
 import CustomToolboxWrapper from "./CustomToolboxWrapper";
 import CustomQuestionCheckbox from "./component/multicheckbox/CustomQuestionCheckbox";
@@ -18,7 +19,7 @@ class SurveyReactV2 extends Component {
   render() {
     HeaderToolbox();
     MultiCheckboxToolbox();
-
+    SectionToolbox();
     // SurveyReact.ReactElementFactory.Instance.registerElement(
     //   "svc-question",
     //   (props) => {
@@ -58,6 +59,19 @@ class SurveyReactV2 extends Component {
     //     }
     //   })
     // );
+    // Hide 'Layout' and 'Numbering' category
+    var propertyStopList = [
+      "questionTitleLocation",
+      "startWithNewLine",
+      "state",
+      "questionsOrder",
+      "indent",
+      "innerIndent",
+      "width",
+      "showNumber",
+      "showQuestionNumbers",
+      "questionStartIndex",
+  ];
 
     creator.onDefineElementMenuItems.add((sender, options) => {
       // If an element doesn't have such a property, the element is not a question.
@@ -134,71 +148,89 @@ class SurveyReactV2 extends Component {
     creator.rightContainerActiveItem("toolbox");
     creator.toolbox.clearItems();
     creator.toolbox.addItem({
-        name: "header",
-        isCopied: true,
-        iconName: "header",
-        title: "Header",
-        json: {
-            "type": "header",
-        }
-      });
-      creator.toolbox.addItem({
-        name: "multiselect",
-        isCopied: true,
-        iconName: "icon-multi-select",
-        title: "Multi-Select",
-        json: {
-            "type": "multicheckbox",
-        }
-      });
-      creator.toolbox.addItem({
-        name: "inputtext",
-        iconName: "icon-text1",
-        title: "Text",
-        json: {
-            "type": "text",
-            "placeHolder": "Input Text",
-        }
-      });
+      name: "header",
+      isCopied: true,
+      iconName: "header",
+      title: "Header",
+      json: {
+          "type": "header",
+      }
+    });
+    creator.toolbox.addItem({
+      name: "section",
+      isCopied: true,
+      iconName: "section",
+      title: "Section",
+      json: {
+          "type": "section",
+          "placeHolder": "abc",
+      },
+      panelPlaceHolder: "jon.snow@nightwatch.org",
+      placeHolder: "abc",
+    });
+    creator.toolbox.addItem({
+      name: "multiselect",
+      isCopied: true,
+      iconName: "icon-multi-select",
+      title: "Multi-Select",
+      json: {
+          "type": "multicheckbox",
+      }
+    });
+    creator.toolbox.addItem({
+      name: "inputtext",
+      iconName: "icon-text1",
+      title: "Text",
+      json: {
+          "type": "text",
+          "placeHolder": "Input Text",
+      }
+    });
 
-      creator.toolbox.addItem({
-        name: "inputpass",
-        isCopied: true,
-        iconName: "icon-password",
-        title: "Password",
-        json: {
-            "type": "text",
-            "name": "q1",
-            "placeHolder": "Input Password",
-            "inputType": "password",
-        }
-      });
+    creator.toolbox.addItem({
+      name: "inputpass",
+      isCopied: true,
+      iconName: "icon-password",
+      title: "Password",
+      json: {
+          "type": "text",
+          "name": "q1",
+          "placeHolder": "Input Password",
+          "inputType": "password",
+      }
+    });
 
-      creator.toolbox.addItem({
-        name: "inputnumber",
-        iconName: "icon-number",
-        title: "Number",
-        json: {
-            "type": "checkbox",
-        }
-      });
+    creator.toolbox.addItem({
+      name: "inputnumber",
+      iconName: "icon-number",
+      title: "Number",
+      json: {
+          "type": "checkbox",
+      }
+    });
 
-      creator.toolbox.addItem({
-        name: "inputemail",
-        iconName: "icon-email",
-        title: "Email",
-        json: {
-            "type": "text",
-            "name": "q1",
-            "placeHolder": "Input Email",
-            "inputType": "email",
-            "validators": [
-              {
-                  "type": "email"
-              }
-          ],
-        }
-      });
+    creator.toolbox.addItem({
+      name: "inputemail",
+      iconName: "icon-email",
+      title: "Email",
+      json: {
+          "type": "text",
+          "name": "q1",
+          "placeHolder": "Input Email",
+          "inputType": "email",
+          "validators": [
+            {
+                "type": "email"
+            }
+        ],
+      }
+    });
+
+      creator
+        .onShowingProperty
+        .add(function (sender, options) {
+            options.canShow = propertyStopList.indexOf(options.property.name) == -1;
+        });
 
     creator.onTestSurveyCreated.add(function(editor, options){
       defineMultiCheckboxCSS(options.survey);

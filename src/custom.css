@@ -247,3 +247,46 @@ input[name="toggle"]:checked+.slidercontainer>.ballslider {
   -ms-flex-direction: row;
   flex-direction: row;
 }
+
+.spg-row > div {
+  min-width: auto !important;
+}
+.spg-row:nth-child(3) {
+  padding-bottom: 16px;
+}
+
+.spg-panel .spg-panel__title--expandable {
+  padding: 5px 5px 5px 16px;
+  font-size: 12px;
+  background-color: #f5f8fa;
+}
+.spg-panel__content .spg-row {
+  margin-top: unset;
+}
+.spg-panel__content {
+  background-color: #fff;
+  padding-bottom: 16px;
+}
+.spg-question .sv-title-actions__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+.spg-input, .spg-comment {
+  height: 32px;
+  font-size: 14px;
+  padding-left: 8px;
+  color: #4a4a4a;
+}
+.spg-comment {
+  padding-top: 4px;
+}
+
+.sd-toggle-custom {
+  padding: 16px 0px 10px 0px;
+  font-size: 12px;
+  color: #606060;
+}
+.sd-boolean-custom {
+  right: 16px;
+}
