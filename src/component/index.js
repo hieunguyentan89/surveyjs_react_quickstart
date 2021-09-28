@@ -2,18 +2,17 @@ import React, { Component } from "react";
 import * as Survey from "survey-core";
 import * as SurveyReact from "survey-react-ui";
 import * as SurveyCreator from "survey-creator-react";
-import { HeaderToolbox } from "./component/toolbox/HeaderToolbox";
-import CustomCreator from "./CustomDesigner";
-import CustomToolboxWrapper from "./CustomToolboxWrapper";
-import CustomQuestionCheckbox from "./component/multicheckbox/CustomQuestionCheckbox";
-import "survey-core/modern.css";
+import { HeaderToolbox } from "./toolbox/HeaderToolbox";
+import CustomCreator from "../CustomDesigner";
+import CustomToolboxWrapper from "../CustomToolboxWrapper";
+import CustomQuestionCheckbox from "./multicheckbox/CustomQuestionCheckbox";
+import "survey-knockout/modern.css";
 import "survey-creator-react/survey-creator-react.css";
 import "./custom.css";
-import { MultiCheckboxToolbox, defineMultiCheckboxCSS } from "./component/toolbox/MultiCheckboxToolbox";
-import CustomBooleanCheckbox from "./component/toolbox/properties/CustomBooleanCheckbox";
-import CustomItemValueAdorner from "./component/multicheckbox/CustomItemValueAdorner";
-import CustomIconSVG from "./component/CustomIconSVG";
-import CustomPropertyGrid from './component/CustomPropertyGrid';
+import { MultiCheckboxToolbox, defineMultiCheckboxCSS } from "./toolbox/MultiCheckboxToolbox";
+import CustomBooleanCheckbox from "./toolbox/properties/CustomBooleanCheckbox";
+import CustomItemValueAdorner from "./multicheckbox/CustomItemValueAdorner";
+import CustomIconSVG from "./CustomIconSVG";
 
 class SurveyReactV2 extends Component {
   render() {
@@ -33,33 +32,6 @@ class SurveyReactV2 extends Component {
   //     return React.createElement(CustomToolboxWrapper, props);
   //   }
   // );
-  
-  // SurveyCreator
-  // .SurveyQuestionEditorDefinition
-  // .definition["page"]
-  // .properties = [
-  //     {   name: "name",
-  //         title: "Internal Field Name",
-  //         visibleIndex: 1,
-  //     }, {
-  //         name: "title",
-  //         title: "Field Name",
-  //         visibleIndex: 2,
-  //     }, {
-  //         name: "description",
-  //         title: "Field Description",
-  //         maxLength: 160,
-  //         visibleIndex: 3,
-  //     }
-  // ];
-
-  SurveyReact.ReactElementFactory.Instance.registerElement(
-    "svc-property-grid",
-    (props) => {
-      return React.createElement(CustomPropertyGrid, props);
-    }
-  );
-
   SurveyReact.ReactQuestionFactory.Instance.registerQuestion("multicheckbox", (props) => {
     return React.createElement(CustomQuestionCheckbox, props);
   });
@@ -74,81 +46,18 @@ class SurveyReactV2 extends Component {
       return React.createElement(CustomItemValueAdorner, props);
     }
   );
-
-const property = Survey.Serializer.findProperty("page", "description");
-property.typeValue = "input";
-const property1 = Survey.Serializer.findProperty("page", "title");
-property1.typeValue = "input";
-console.log(property);
-  SurveyCreator
-      .SurveyQuestionEditorDefinition
-      .definition.page
-      .properties = [{
-        name: 'name',
-        title: 'Internal Field Name',
-        visibleIndex: 1,
-      }, {
-        name: 'title',
-        title: 'Field Name',
-        visibleIndex: 2,
-      }, {
-        name: 'description',
-        title: 'Field Description',
-        maxLength: 160,
-        visibleIndex: 3,
-      }];
-    
+    var creator = new SurveyCreator.SurveyCreator({}, {});
     // creator.toolbarItems.push(
     //   new Survey.Action({
-    //     id: "icon-setting-page",
-    //     iconName: "icon-setting-page",
-    //     needSeparator: true,
-    //     action: () => {
-    //       console.log(creator.survey.visiblePages);
-    //       if (!creator.showPropertyGrid) {
-    //         creator.showPropertyGrid = true;
-    //       } else {
-    //         creator.selectElement(creator.survey.visiblePages[0]);
-    //       }
-    //     },
-    //     active: creator.isElementSelected(creator.survey),
-    //     visible: creator.viewType === "designer",
-    //     title: "Settings",
-    //     showTitle: true
+    //     id: "toolboxCustomization",
+    //     visible: true,
+    //     title: "Toolbox Customization",
+    //     enabled: true,
+    //     action: function () {
+    //       alert("Hi!");
+    //     }
     //   })
     // );
-
-    var creator = new SurveyCreator.SurveyCreator({}, {});
-    const placeHolderTexts = {
-      page: {
-        name: {
-          placeHolder: 'Please type page name',
-        },
-        title: {
-          placeHolder: 'Please type page title',
-        },
-        description: {
-          placeHolder: 'Please type page description',
-        },
-      },
-    };
-
-    creator.onPropertyEditorCreated.add((_, options) => {
-      const internalOptions = options;
-      
-      const type = internalOptions.obj.isQuestion ? "question" : internalOptions.obj.getType();;
-      const placeHolderObj = placeHolderTexts[type];
-      if (!placeHolderObj || !placeHolderObj[internalOptions.property.name]) return;
-      internalOptions.editor.placeHolder =
-        placeHolderObj[internalOptions.property.name].placeHolder;
-      // if (type === 'page') {
-      //   internalOptions.property.displayName =
-      //     placeHolderObj[internalOptions.property.name].displayName;
-      //     // console.log(internalOptions);
-      // }
-    });
-  
-    
 
     creator.onDefineElementMenuItems.add((sender, options) => {
       // If an element doesn't have such a property, the element is not a question.

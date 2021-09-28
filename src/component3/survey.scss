@@ -1,0 +1,256 @@
+.edit-smart-form-survey {
+  :global {
+    survey-creator .sv-action-bar-item:not(button):focus, survey-creator *:not(button):focus, survey-creator .svc-page__question-type-selector:focus, .svc-creator .sv-action-bar-item:not(button):focus, .svc-creator *:not(button):focus, .svc-creator .svc-page__question-type-selector:focus, .sv-popup .sv-action-bar-item:not(button):focus, .sv-popup *:not(button):focus, .sv-popup .svc-page__question-type-selector:focus {
+      outline: none !important;
+    }
+    .svc-creator {
+      .sv-action-bar {
+        float: right;
+      }
+    
+      .sd-page {
+        align-items: center;
+      }
+    
+      .svc-question__drag-area {
+        visibility: visible;
+        right: calc(0% - 1px) !important;
+        bottom: 0px !important;
+        left: auto;
+        top: auto;
+        height: 100%;
+        width: 34px;
+      }
+    
+      .svc-question__content {
+        border-color: #269cd2 !important;
+        border-radius: 0;
+        width: calc(100% - 2px) !important;
+        padding: calc(4 * var(--base-unit, 8px)) calc(4 * var(--base-unit, 8px)) calc(4 * var(--base-unit, 8px));
+      }
+    
+      .svc-question__drag-element {
+        width: 34px;
+        height: 34px;
+        padding: 4px 7px;
+        border-radius: 5px 0 0 5px;
+        background-color: #269cd2;
+        border-color: #269cd2;
+      }
+    
+      .svc-question__drag-element {
+        &:after {
+          content: "\f0b2";
+          font-size: 18px;
+          font-weight: 600;
+          font-family: "Font Awesome 5 Free"; /* This is the correct font-family*/
+          font-style: normal;
+          color: #fff;
+        }
+      }
+    
+      .svc-question__content-actions {
+        bottom: calc(-4 * var(--base-unit, 9px)) !important;
+        background-color: #269cd2;
+        color: #fff;
+        left: auto;
+        right: calc(0% - 2px);
+        width: 152px !important;
+        height: 34px !important;
+        border-radius: 0 0 5px 5px;
+      }
+      .svc-question__content-actions  .sv-action-bar {
+        height: inherit;
+      }
+      .svc-question__content-actions  .sv-action-bar .sv-action{
+        height: inherit;
+      }
+      .sv-action-bar-item--action-show-hide {
+        margin-left: 8px;
+      }
+      .sv-action-bar-item--action-delete {
+        margin-right: 8px;
+      }
+      .sv-action-bar-item {
+        border: none;
+      }
+      .sv-action-bar-item:focus {
+        border: none !important;
+      }
+    
+      .sv-action-bar-item--action-show-hide .sv-action__content .sv-svg-icon {
+        width: 20px !important;
+        height: 18px !important;
+      }
+      .sv-action-bar-item--action-required .sv-action__content .sv-svg-icon {
+        width: 18px !important;
+        height: 18px !important;
+      }
+      .sv-action-bar-item--action-clone .sv-action__content .sv-svg-icon {
+        width: 18px !important;
+        height: 18px !important;
+      }
+      .sv-action-bar-item--action-delete .sv-action__content .sv-svg-icon {
+        width: 16px !important;
+        height: 18px !important;
+      }
+    
+      .svc-row {
+        margin: 20px;
+      }
+    
+      .sv-action-bar .sv-action__content {
+        padding-right: unset !important;
+      }
+    
+      .sv-action-bar .sv-action-bar-item:hover {
+        background-color: transparent;
+      }
+    
+      .svc-property-panel {
+        min-width: 300px;
+        max-width: 300px;
+        height: 100%;
+      }
+    
+      .sd-page__title {
+        display: none;
+      }
+    
+      .sd-page__description {
+        display: none;
+      }
+    
+      .sd-container-modern__title {
+        display: none;
+      }
+    
+      .sd-question__num {
+        display: none;
+      }
+    
+      .switch {
+        position: relative;
+        display: inline-block;
+        min-width: 55px;
+        width: auto;
+        height: 24px;
+        border-radius: 16px;
+      }
+    
+      input[name="toggle"]:checked+.slidercontainer {
+        background-color: #0099db;
+      }
+    
+    
+      input[name="toggle"]:checked+.slidercontainer>.ballslider {
+        transform: translateX(29px);
+      }
+    
+      .slidercontainer {
+        min-width: 55px;
+        width: min-content;
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 16px;
+      }
+    
+      .ballslider {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 3px;
+        background-color: #fff;
+        border-radius: 50%;
+        transition: .4s;
+      }
+    
+      .active-text {
+        height: 14px;
+        font-size: 10px;
+        text-align: left;
+        color: #fff;
+        padding-top: 5px;
+        padding-left: 8px;
+        user-select: none;
+      }
+    
+      .inactive-text {
+        height: 14px;
+        font-size: 10px;
+        color: #000;
+        padding-top: 5px;
+        padding-right: 8px;
+        padding-left: 30px;
+        text-align: right;
+        user-select: none;
+      }
+    
+      .sd-toggle-custom {
+        display: flex;
+      }
+    
+      .sd-boolean-custom {
+        position: absolute;
+        right: 0%;
+      }
+    
+      .svc-icon-remove-item-custom {
+        display: none;
+        position: relative;
+        cursor: pointer;
+        left: calc(3 * var(--base-unit, 8px));
+      } 
+    
+      .svc-string-editor:hover:not(:focus-within) + .svc-icon-remove-item-custom-display {
+        display: inline-block;
+      }
+    
+      .svc-string-editor .svc-string-editor__controls {
+        width: 100px;
+        color: #269cd2;
+      }
+    
+      .svc-string-editor__button--edit {
+        padding-right: 20px;
+      }
+    
+      .svc-string-editor__button--done {
+        margin-top: 0%;
+      }
+    
+      .sd-selectbase .svc-item-value-wrapper {
+        margin-left: 0%;
+      }
+    
+      .multicheck-button-add {
+        margin: 0 24px;
+        font-family: OpenSans;
+        font-size: 14px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+        text-align: left;
+        color: #269cd2;
+        cursor: pointer;
+      }
+    
+      .svc-flex-row-custom {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: row;
+        flex-direction: row;
+      }
+    }
+  }
+}

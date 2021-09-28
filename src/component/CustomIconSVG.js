@@ -20,6 +20,7 @@ const CustomIconSVG = () => (
     <i data-fa-symbol="icon-multi-select" className="fas fa-check-square icon-multi-select"></i>
     <i data-fa-symbol="icon-remove-item-custom" className="fas fa-trash-alt fa-fw"></i>
     <i data-fa-symbol="icon-pencil-alt" className="fas fa-pencil-alt fa-fw"></i>
+    <i data-fa-symbol="icon-setting-page" className="fas fa-clipboard-list-check fa-fw"></i>
     
   </div>
 );

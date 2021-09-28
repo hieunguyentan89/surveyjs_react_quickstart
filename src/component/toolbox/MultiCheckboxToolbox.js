@@ -6,33 +6,18 @@ import MultiQuestionCheckboxModel from "../multicheckbox/MultiQuestionCheckboxMo
 
 export function MultiCheckboxToolbox() {
   const widget = {
-    //the widget name. It should be unique and written in lowcase.
     name: "multicheckbox",
-    //the widget title. It is how it will appear on the toolbox of the SurveyJS Editor/Builder
     title: "Text with header",
-    //the name of the icon on the toolbox. We will leave it empty to use the standard one
     iconName: "",
-    //If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded
     widgetIsLoaded: function () {
-      //return typeof $ == "function" && !!$.fn.select2; //return true if jQuery and select2 widget are loaded on the page
       return true; //we do not require anything so we just return true. 
     },
-    //SurveyJS library calls this function for every question to check, if it should use this widget instead of default rendering/behavior
     isFit: (question) => {
       return question.getType() == "multicheckbox";
     },
 
     init() {
-      //Register a new type using the empty question as the base.
-      // Survey.Serializer.addClass("header", [], null, "expression");
       Survey.Serializer.addClass("multicheckbox", [
-        { name: "name", displayName: "Internal Field Name", category: "general", visibleIndex: 0 },
-        { name: "title", displayName: "Field Name", category: "general", visibleIndex: 1 },
-        { name: "description", displayName: "Field Description", category: "general", visibleIndex: 2 },
-        { name: "visible", displayName: "Is this field visible?", default: true, category: "general" },
-        { name: "isRequired", displayName: "Is this field required?", default: false, category: "general" },
-        { name: "readOnly", displayName: "Is this field read only?", default: false, category: "general" },
-        { name: "hasComment", displayName: "Are comments allowed?", default: false, category: "general" },
       ],
         function () {
           const multiCheckboxModel = new MultiQuestionCheckboxModel("");

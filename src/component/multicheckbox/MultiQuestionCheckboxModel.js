@@ -7,6 +7,11 @@ class MultiQuestionCheckboxModel extends Survey.QuestionCheckboxModel {
 
     getType() {
         return "multicheckbox";
+        // return "checkbox";
+    }
+    
+    visible() {
+        return this.isDesignMode || super.visible;
     }
 }
 
